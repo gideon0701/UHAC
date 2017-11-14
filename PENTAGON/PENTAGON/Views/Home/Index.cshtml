@@ -1,0 +1,35 @@
+﻿
+    @model PENTAGON.Models.employee
+    @{
+      
+        ViewBag.Title = "Index";
+      
+    }   
+   <h2>Login</h2>
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <table>
+            <tr>
+                <td>
+                  <label>Email</label>
+                </td>
+                <td>
+                   <input type="text" name="email" value="@Html.DisplayFor(model => model.email)" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Password</label>
+                </td>
+                <td>
+                   <input type="password" name="pwd" value="@Html.DisplayFor(model => model.pwd)" />
+                </td>
+            </tr>
+          
+        </table>
+        <input type="submit" value="Login"/>
+      
+        @Html.DisplayFor(model => model.Login_Message)
+      
+    }

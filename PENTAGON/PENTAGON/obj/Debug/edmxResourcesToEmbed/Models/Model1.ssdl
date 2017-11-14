@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="myhealthDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="attr_HMO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="benefits" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employees">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="HMO_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="position" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="department" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="pwd" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="usergroup_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usergroup">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="position_name" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="keyword" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__employees__HMO_i__164452B1">
+    <End Role="attr_HMO" Type="Self.attr_HMO" Multiplicity="1" />
+    <End Role="employees" Type="Self.employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="attr_HMO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="employees">
+        <PropertyRef Name="HMO_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__employees__userg__15502E78">
+    <End Role="usergroup" Type="Self.usergroup" Multiplicity="1" />
+    <End Role="employees" Type="Self.employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usergroup">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="employees">
+        <PropertyRef Name="usergroup_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="myhealthDbModelStoreContainer">
+    <EntitySet Name="attr_HMO" EntityType="Self.attr_HMO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usergroup" EntityType="Self.usergroup" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__employees__HMO_i__164452B1" Association="Self.FK__employees__HMO_i__164452B1">
+      <End Role="attr_HMO" EntitySet="attr_HMO" />
+      <End Role="employees" EntitySet="employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__employees__userg__15502E78" Association="Self.FK__employees__userg__15502E78">
+      <End Role="usergroup" EntitySet="usergroup" />
+      <End Role="employees" EntitySet="employees" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
