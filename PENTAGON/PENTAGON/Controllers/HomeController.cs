@@ -26,8 +26,10 @@ namespace PENTAGON.Controllers
             if (appmodel.getAccess(employees) != null)
             {
                 var emp = appmodel.getAccess(employees);
+                string pos = appmodel.gotoDashboard(emp.usergroup_id); //2017.11.15 Gideon Add
                 Session["Emp_ID"] = emp.id;
-                return RedirectToAction("Index","EmployeeDashboard",new { id = emp.id});
+                
+                return RedirectToAction("Index",pos,new { id = emp.id}); //2017.11.15 Gideon Edit
             }
             employees.Login_Message = "Wrong Email or Password";
             return View("Index", employees);
