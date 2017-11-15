@@ -20,7 +20,7 @@ namespace PENTAGON.Controllers
         //POST: Home/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login([Bind(Include ="email,pwd")] employee employees)
+        public ActionResult Login(employee employees)
         {
             appmodel = new ApplicationModel();
             if (appmodel.getAccess(employees) != null)
