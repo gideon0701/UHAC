@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="myhealthDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="myhealthDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="attr_HMO">
           <Key>
             <PropertyRef Name="id" />
@@ -34,7 +34,7 @@
           <Property Name="position_name" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="keyword" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
-        <Association Name="FK__employees__HMO_i__164452B1">
+        <Association Name="FK__employees__HMO_i__4F7CD00D">
           <End Role="attr_HMO" Type="Self.attr_HMO" Multiplicity="1" />
           <End Role="employees" Type="Self.employees" Multiplicity="*" />
           <ReferentialConstraint>
@@ -46,7 +46,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__employees__userg__15502E78">
+        <Association Name="FK__employees__userg__4E88ABD4">
           <End Role="usergroup" Type="Self.usergroup" Multiplicity="1" />
           <End Role="employees" Type="Self.employees" Multiplicity="*" />
           <ReferentialConstraint>
@@ -62,11 +62,11 @@
           <EntitySet Name="attr_HMO" EntityType="Self.attr_HMO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usergroup" EntityType="Self.usergroup" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__employees__HMO_i__164452B1" Association="Self.FK__employees__HMO_i__164452B1">
+          <AssociationSet Name="FK__employees__HMO_i__4F7CD00D" Association="Self.FK__employees__HMO_i__4F7CD00D">
             <End Role="attr_HMO" EntitySet="attr_HMO" />
             <End Role="employees" EntitySet="employees" />
           </AssociationSet>
-          <AssociationSet Name="FK__employees__userg__15502E78" Association="Self.FK__employees__userg__15502E78">
+          <AssociationSet Name="FK__employees__userg__4E88ABD4" Association="Self.FK__employees__userg__4E88ABD4">
             <End Role="usergroup" EntitySet="usergroup" />
             <End Role="employees" EntitySet="employees" />
           </AssociationSet>
@@ -83,7 +83,7 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="benefits" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="status" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="employees" Relationship="Self.FK__employees__HMO_i__164452B1" FromRole="attr_HMO" ToRole="employees" />
+          <NavigationProperty Name="employees" Relationship="Self.FK__employees__HMO_i__4F7CD00D" FromRole="attr_HMO" ToRole="employees" />
         </EntityType>
         <EntityType Name="employee">
           <Key>
@@ -97,8 +97,8 @@
           <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pwd" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="usergroup_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="attr_HMO" Relationship="Self.FK__employees__HMO_i__164452B1" FromRole="employees" ToRole="attr_HMO" />
-          <NavigationProperty Name="usergroup" Relationship="Self.FK__employees__userg__15502E78" FromRole="employees" ToRole="usergroup" />
+          <NavigationProperty Name="attr_HMO" Relationship="Self.FK__employees__HMO_i__4F7CD00D" FromRole="employees" ToRole="attr_HMO" />
+          <NavigationProperty Name="usergroup" Relationship="Self.FK__employees__userg__4E88ABD4" FromRole="employees" ToRole="usergroup" />
         </EntityType>
         <EntityType Name="usergroup">
           <Key>
@@ -107,9 +107,9 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="position_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="keyword" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="employees" Relationship="Self.FK__employees__userg__15502E78" FromRole="usergroup" ToRole="employees" />
+          <NavigationProperty Name="employees" Relationship="Self.FK__employees__userg__4E88ABD4" FromRole="usergroup" ToRole="employees" />
         </EntityType>
-        <Association Name="FK__employees__HMO_i__164452B1">
+        <Association Name="FK__employees__HMO_i__4F7CD00D">
           <End Role="attr_HMO" Type="Self.attr_HMO" Multiplicity="1" />
           <End Role="employees" Type="Self.employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +121,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__employees__userg__15502E78">
+        <Association Name="FK__employees__userg__4E88ABD4">
           <End Role="usergroup" Type="Self.usergroup" Multiplicity="1" />
           <End Role="employees" Type="Self.employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,11 +137,11 @@
           <EntitySet Name="attr_HMO" EntityType="Self.attr_HMO" />
           <EntitySet Name="employees" EntityType="Self.employee" />
           <EntitySet Name="usergroups" EntityType="Self.usergroup" />
-          <AssociationSet Name="FK__employees__HMO_i__164452B1" Association="Self.FK__employees__HMO_i__164452B1">
+          <AssociationSet Name="FK__employees__HMO_i__4F7CD00D" Association="Self.FK__employees__HMO_i__4F7CD00D">
             <End Role="attr_HMO" EntitySet="attr_HMO" />
             <End Role="employees" EntitySet="employees" />
           </AssociationSet>
-          <AssociationSet Name="FK__employees__userg__15502E78" Association="Self.FK__employees__userg__15502E78">
+          <AssociationSet Name="FK__employees__userg__4E88ABD4" Association="Self.FK__employees__userg__4E88ABD4">
             <End Role="usergroup" EntitySet="usergroups" />
             <End Role="employees" EntitySet="employees" />
           </AssociationSet>

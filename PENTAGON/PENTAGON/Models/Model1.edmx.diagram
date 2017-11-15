@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2d699b97646e480bb1b0d624fd50f69f" Name="Diagram1">
+      <Diagram DiagramId="c041e231582a45b0a809bd7b353cfe6f" Name="Diagram1">
         <EntityTypeShape EntityType="myhealthDbModel.attr_HMO" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="myhealthDbModel.employee" Width="1.5" PointX="3.375" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="myhealthDbModel.employee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="myhealthDbModel.usergroup" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <AssociationConnector Association="myhealthDbModel.FK__employees__HMO_i__164452B1" ManuallyRouted="false" />
-        <AssociationConnector Association="myhealthDbModel.FK__employees__userg__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="myhealthDbModel.FK__employees__HMO_i__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="myhealthDbModel.FK__employees__userg__4E88ABD4" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
