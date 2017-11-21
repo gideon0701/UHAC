@@ -17,5 +17,7 @@ Current features added in Windows Form App:
 Next features to add: 
 
 1) Documents assesment tab in home window.
+3) Add Documents table in database.
 2) Analytics Tab
+
 
