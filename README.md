@@ -20,4 +20,9 @@ Next features to add:
 3) Add Documents table in database.
 2) Analytics Tab
 
+Gideon
+3.00 PM
+11/25/2017
+
+Added Web Api for the android application.
 
