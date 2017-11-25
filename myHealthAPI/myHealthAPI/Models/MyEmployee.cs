@@ -15,6 +15,8 @@ namespace myHealthAPI.Models
         public string email { get; set; }
         public string password { get; set; }
         public string healthProvider { get; set; }
+        public string hmoStatus { get; set; }
+        public string hmoBenefits { get; set; }
 
     }
 }

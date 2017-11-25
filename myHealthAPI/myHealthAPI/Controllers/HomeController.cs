@@ -39,7 +39,9 @@ namespace myHealthAPI.Controllers
                     department = employee.department,
                     email = employee.email,
                     password = employee.pwd,
-                    healthProvider = employee.healthProvider
+                    healthProvider = employee.healthProvider,
+                    hmoStatus = employee.HMO.status,
+                    hmoBenefits = employee.HMO.benefits
                 };
 
                 myempList.Add(myemp);
@@ -63,7 +65,9 @@ namespace myHealthAPI.Controllers
                 department = emp.department,
                 email = emp.email,
                 password = emp.pwd,
-                healthProvider = emp.healthProvider
+                healthProvider = emp.healthProvider,
+                hmoStatus = emp.HMO.status,
+                hmoBenefits = emp.HMO.benefits
             };
             JavaScriptSerializer json = new JavaScriptSerializer();
             var js = json.Serialize(myemp);
@@ -92,7 +96,9 @@ namespace myHealthAPI.Controllers
                     department = emp.department,
                     email = emp.email,
                     password = emp.pwd,
-                    healthProvider = emp.healthProvider
+                    healthProvider = emp.healthProvider,
+                    hmoStatus = emp.HMO.status,
+                    hmoBenefits = emp.HMO.benefits
 
                 };
                 var js = json.Serialize(myemp);
