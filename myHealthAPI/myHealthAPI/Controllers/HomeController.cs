@@ -107,5 +107,18 @@ namespace myHealthAPI.Controllers
             }
         }
 
+        [HttpGet]
+        public string getAllHospital(string provider)
+        {
+            List<AccreditedHospital> listHosp = new List<AccreditedHospital>();
+
+            listHosp = db.AccreditedHospitals.Where(h => h.healthProvider == provider).ToList();
+
+            JavaScriptSerializer json = new JavaScriptSerializer();
+            var js = json.Serialize(listHosp);
+            return js;
+
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="myhealthDbEntities-Web.config Connection String" description="myhealthDbEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=pentagon1.database.windows.net;initial catalog=myhealthDb;persist security info=True;user id=pentagon;password=@4r99ppea;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\edmon\\source\\repos\\myHealthAPI\\myHealthAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='myhealthDbEntities']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="F:\\Gideon\\UHAC\\myHealthAPI\\myHealthAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='myhealthDbEntities']/@connectionString" />
   </parameter>
 </parameters>
