@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="myhealthDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="HMO_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="position" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="department" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pwd" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usergroup_id" Type="Int32" Nullable="false" />
+    <Property Name="Contact" Type="Int32" />
+    <Property Name="IsMarried" Type="Int32" />
+    <Property Name="Dependents" Type="Int32" />
+    <Property Name="healthProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="withPayable" Type="Int32" />
+    <Property Name="Card_Expiration_Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="HMO" Relationship="Self.FK__employees__HMO_i__4F7CD00D" FromRole="employees" ToRole="HMO" />
+    <NavigationProperty Name="usergroup" Relationship="Self.FK__employees__userg__4E88ABD4" FromRole="employees" ToRole="usergroup" />
+    <NavigationProperty Name="processings" Relationship="Self.FK__processin__emplo__5535A963" FromRole="employees" ToRole="processing" />
+    <NavigationProperty Name="Records" Relationship="Self.FK__Records__id__6C190EBB" FromRole="employees" ToRole="Records" />
+  </EntityType>
+  <EntityType Name="HMO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="benefits" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="employees" Relationship="Self.FK__employees__HMO_i__4F7CD00D" FromRole="HMO" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="processing">
+    <Key>
+      <PropertyRef Name="ProcessId" />
+    </Key>
+    <Property Name="ProcessId" Type="Int32" Nullable="false" />
+    <Property Name="employeeId" Type="Int32" Nullable="false" />
+    <Property Name="balance" Type="Single" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="process_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="data" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="care_of" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="duration" Type="Int32" />
+    <NavigationProperty Name="employee" Relationship="Self.FK__processin__emplo__5535A963" FromRole="processing" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="Availment_Claim" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Availment_Claim" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Health_Card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Hospital" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Covered_Bill" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="employee" Relationship="Self.FK__Records__id__6C190EBB" FromRole="Records" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="usergroup">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="position_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="keyword" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="employees" Relationship="Self.FK__employees__userg__4E88ABD4" FromRole="usergroup" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="AccreditedHospital">
+    <Key>
+      <PropertyRef Name="hospital_id" />
+    </Key>
+    <Property Name="hospital_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="healthProvider" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="hospital_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="hospital_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__employees__HMO_i__4F7CD00D">
+    <End Role="HMO" Type="Self.HMO" Multiplicity="1" />
+    <End Role="employees" Type="Self.employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HMO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="employees">
+        <PropertyRef Name="HMO_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__employees__userg__4E88ABD4">
+    <End Role="usergroup" Type="Self.usergroup" Multiplicity="1" />
+    <End Role="employees" Type="Self.employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usergroup">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="employees">
+        <PropertyRef Name="usergroup_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__processin__emplo__5535A963">
+    <End Role="employees" Type="Self.employee" Multiplicity="1" />
+    <End Role="processing" Type="Self.processing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="processing">
+        <PropertyRef Name="employeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Records__id__6C190EBB">
+    <End Role="employees" Type="Self.employee" Multiplicity="1" />
+    <End Role="Records" Type="Self.Record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Records">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="myhealthDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="HMOes" EntityType="Self.HMO" />
+    <EntitySet Name="processings" EntityType="Self.processing" />
+    <EntitySet Name="Records" EntityType="Self.Record" />
+    <EntitySet Name="usergroups" EntityType="Self.usergroup" />
+    <EntitySet Name="AccreditedHospitals" EntityType="Self.AccreditedHospital" />
+    <AssociationSet Name="FK__employees__HMO_i__4F7CD00D" Association="Self.FK__employees__HMO_i__4F7CD00D">
+      <End Role="HMO" EntitySet="HMOes" />
+      <End Role="employees" EntitySet="employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__employees__userg__4E88ABD4" Association="Self.FK__employees__userg__4E88ABD4">
+      <End Role="usergroup" EntitySet="usergroups" />
+      <End Role="employees" EntitySet="employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__processin__emplo__5535A963" Association="Self.FK__processin__emplo__5535A963">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="processing" EntitySet="processings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Records__id__6C190EBB" Association="Self.FK__Records__id__6C190EBB">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="Records" EntitySet="Records" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
