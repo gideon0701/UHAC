@@ -1,0 +1,19 @@
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\textBeltTest.exe.config
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\obj\Debug\textBeltTest.csprojResolveAssemblyReference.cache
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\obj\Debug\textBeltTest.Form1.resources
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\obj\Debug\textBeltTest.Properties.Resources.resources
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\obj\Debug\textBeltTest.csproj.GenerateResource.Cache
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\textBeltTest.exe
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\textBeltTest.pdb
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\obj\Debug\textBeltTest.exe
+C:\Users\CarloDp\Documents\UHACK\WFP\benefitsOfficer v1\textBeltTest\obj\Debug\textBeltTest.pdb
+C:\git\UHAC\WindowsFormApp\textBeltTest\bin\Debug\textBeltTest.exe.config
+C:\git\UHAC\WindowsFormApp\textBeltTest\obj\Debug\textBeltTest.exe
+C:\git\UHAC\WindowsFormApp\textBeltTest\obj\Debug\textBeltTest.pdb
