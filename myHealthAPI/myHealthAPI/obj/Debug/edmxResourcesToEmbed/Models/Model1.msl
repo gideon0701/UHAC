@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="myhealthDbModelStoreContainer" CdmEntityContainer="myhealthDbEntities">
+    <EntitySetMapping Name="AccreditedHospitals">
+      <EntityTypeMapping TypeName="myhealthDbModel.AccreditedHospital">
+        <MappingFragment StoreEntitySet="AccreditedHospitals">
+          <ScalarProperty Name="hospital_id" ColumnName="hospital_id" />
+          <ScalarProperty Name="healthProvider" ColumnName="healthProvider" />
+          <ScalarProperty Name="hospital_name" ColumnName="hospital_name" />
+          <ScalarProperty Name="hospital_address" ColumnName="hospital_address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="employees">
       <EntityTypeMapping TypeName="myhealthDbModel.employee">
         <MappingFragment StoreEntitySet="employees">
@@ -56,6 +66,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="requirements">
+      <EntityTypeMapping TypeName="myhealthDbModel.requirement">
+        <MappingFragment StoreEntitySet="requirements">
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="documentLabel" ColumnName="documentLabel" />
+          <ScalarProperty Name="is_received" ColumnName="is_received" />
+          <ScalarProperty Name="doctag_id" ColumnName="doctag_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="usergroups">
       <EntityTypeMapping TypeName="myhealthDbModel.usergroup">
         <MappingFragment StoreEntitySet="usergroup">
@@ -65,13 +85,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AccreditedHospitals">
-      <EntityTypeMapping TypeName="myhealthDbModel.AccreditedHospital">
-        <MappingFragment StoreEntitySet="AccreditedHospitals">
-          <ScalarProperty Name="hospital_id" ColumnName="hospital_id" />
-          <ScalarProperty Name="healthProvider" ColumnName="healthProvider" />
-          <ScalarProperty Name="hospital_name" ColumnName="hospital_name" />
-          <ScalarProperty Name="hospital_address" ColumnName="hospital_address" />
+    <EntitySetMapping Name="reqAssessments">
+      <EntityTypeMapping TypeName="myhealthDbModel.reqAssessment">
+        <MappingFragment StoreEntitySet="reqAssessment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="form" ColumnName="form" />
+          <ScalarProperty Name="TIN" ColumnName="TIN" />
+          <ScalarProperty Name="medical" ColumnName="medical" />
+          <ScalarProperty Name="NSO" ColumnName="NSO" />
+          <ScalarProperty Name="NSO_Mother" ColumnName="NSO_Mother" />
+          <ScalarProperty Name="NSO_Father" ColumnName="NSO_Father" />
+          <ScalarProperty Name="Marriage_Contract" ColumnName="Marriage_Contract" />
+          <ScalarProperty Name="dependents" ColumnName="dependents" />
+          <ScalarProperty Name="NSO_child1" ColumnName="NSO_child1" />
+          <ScalarProperty Name="NSO_child2" ColumnName="NSO_child2" />
+          <ScalarProperty Name="NSO_child3" ColumnName="NSO_child3" />
+          <ScalarProperty Name="marital_Status" ColumnName="marital_Status" />
+          <ScalarProperty Name="complete" ColumnName="complete" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

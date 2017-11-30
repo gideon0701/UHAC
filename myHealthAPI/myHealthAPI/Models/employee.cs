@@ -19,6 +19,8 @@ namespace myHealthAPI.Models
         {
             this.processings = new HashSet<processing>();
             this.Records = new HashSet<Record>();
+            this.reqAssessments = new HashSet<reqAssessment>();
+            this.requirements = new HashSet<requirement>();
         }
     
         public int id { get; set; }
@@ -42,5 +44,9 @@ namespace myHealthAPI.Models
         public virtual ICollection<processing> processings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Record> Records { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reqAssessment> reqAssessments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<requirement> requirements { get; set; }
     }
 }

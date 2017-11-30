@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="myhealthDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'myhealthDb.dbo.AccreditedHospitals' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="AccreditedHospitals">
     <Key>
       <PropertyRef Name="hospital_id" />
     </Key>
-    <Property Name="hospital_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hospital_id" Type="int" Nullable="false" />
     <Property Name="healthProvider" Type="varchar" MaxLength="250" />
     <Property Name="hospital_name" Type="varchar" MaxLength="500" />
     <Property Name="hospital_address" Type="varchar" MaxLength="500" />
@@ -61,6 +59,40 @@ warning 6002: The table/view 'myhealthDb.dbo.AccreditedHospitals' does not have 
     <Property Name="Hospital" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Covered Bill" Type="int" Nullable="false" />
     <Property Name="Date" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'myhealthDb.dbo.reqAssessment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="reqAssessment">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="form" />
+      <PropertyRef Name="TIN" />
+      <PropertyRef Name="medical" />
+      <PropertyRef Name="NSO" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="form" Type="int" Nullable="false" />
+    <Property Name="TIN" Type="int" Nullable="false" />
+    <Property Name="medical" Type="int" Nullable="false" />
+    <Property Name="NSO" Type="int" Nullable="false" />
+    <Property Name="NSO_Mother" Type="int" />
+    <Property Name="NSO_Father" Type="int" />
+    <Property Name="Marriage_Contract" Type="int" />
+    <Property Name="dependents" Type="varchar" MaxLength="50" />
+    <Property Name="NSO_child1" Type="int" />
+    <Property Name="NSO_child2" Type="int" />
+    <Property Name="NSO_child3" Type="int" />
+    <Property Name="marital_Status" Type="varchar" MaxLength="50" />
+    <Property Name="complete" Type="int" />
+  </EntityType>
+  <EntityType Name="requirements">
+    <Key>
+      <PropertyRef Name="doctag_id" />
+    </Key>
+    <Property Name="employee_id" Type="int" Nullable="false" />
+    <Property Name="documentLabel" Type="varchar" MaxLength="100" />
+    <Property Name="is_received" Type="int" />
+    <Property Name="doctag_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="usergroup">
     <Key>
@@ -118,19 +150,55 @@ warning 6002: The table/view 'myhealthDb.dbo.AccreditedHospitals' does not have 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__reqAssessmen__id__76969D2E">
+    <End Role="employees" Type="Self.employees" Multiplicity="1" />
+    <End Role="reqAssessment" Type="Self.reqAssessment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reqAssessment">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__requireme__emplo__72C60C4A">
+    <End Role="employees" Type="Self.employees" Multiplicity="1" />
+    <End Role="requirements" Type="Self.requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="requirements">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="myhealthDbModelStoreContainer">
+    <EntitySet Name="AccreditedHospitals" EntityType="Self.AccreditedHospitals" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HMO" EntityType="Self.HMO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="processing" EntityType="Self.processing" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Records" EntityType="Self.Records" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="requirements" EntityType="Self.requirements" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usergroup" EntityType="Self.usergroup" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AccreditedHospitals" EntityType="Self.AccreditedHospitals" store:Type="Tables" store:Schema="dbo">
+    <EntitySet Name="reqAssessment" EntityType="Self.reqAssessment" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [AccreditedHospitals].[hospital_id] AS [hospital_id], 
-    [AccreditedHospitals].[healthProvider] AS [healthProvider], 
-    [AccreditedHospitals].[hospital_name] AS [hospital_name], 
-    [AccreditedHospitals].[hospital_address] AS [hospital_address]
-    FROM [dbo].[AccreditedHospitals] AS [AccreditedHospitals]</DefiningQuery>
+    [reqAssessment].[id] AS [id], 
+    [reqAssessment].[form] AS [form], 
+    [reqAssessment].[TIN] AS [TIN], 
+    [reqAssessment].[medical] AS [medical], 
+    [reqAssessment].[NSO] AS [NSO], 
+    [reqAssessment].[NSO_Mother] AS [NSO_Mother], 
+    [reqAssessment].[NSO_Father] AS [NSO_Father], 
+    [reqAssessment].[Marriage_Contract] AS [Marriage_Contract], 
+    [reqAssessment].[dependents] AS [dependents], 
+    [reqAssessment].[NSO_child1] AS [NSO_child1], 
+    [reqAssessment].[NSO_child2] AS [NSO_child2], 
+    [reqAssessment].[NSO_child3] AS [NSO_child3], 
+    [reqAssessment].[marital_Status] AS [marital_Status], 
+    [reqAssessment].[complete] AS [complete]
+    FROM [dbo].[reqAssessment] AS [reqAssessment]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK__employees__HMO_i__4F7CD00D" Association="Self.FK__employees__HMO_i__4F7CD00D">
       <End Role="HMO" EntitySet="HMO" />
@@ -147,6 +215,14 @@ warning 6002: The table/view 'myhealthDb.dbo.AccreditedHospitals' does not have 
     <AssociationSet Name="FK__Records__id__6C190EBB" Association="Self.FK__Records__id__6C190EBB">
       <End Role="employees" EntitySet="employees" />
       <End Role="Records" EntitySet="Records" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reqAssessmen__id__76969D2E" Association="Self.FK__reqAssessmen__id__76969D2E">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="reqAssessment" EntitySet="reqAssessment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__requireme__emplo__72C60C4A" Association="Self.FK__requireme__emplo__72C60C4A">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="requirements" EntitySet="requirements" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

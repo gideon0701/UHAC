@@ -120,5 +120,31 @@ namespace myHealthAPI.Controllers
 
         }
 
+        [HttpGet]
+        public string getMyRequirements(int id)
+        {
+            List<requirement> rqm = new List<requirement>();
+            List<myRequirements> myRqmList = new List<myRequirements>();
+            myRequirements myRqm;
+            rqm = db.requirements.Where(r => r.employee_id == id).ToList();
+            foreach (var r in rqm)
+            {
+                myRqm = new myRequirements
+                {
+                    employee_id = r.employee_id,
+                    documentLabel = r.documentLabel,
+                    is_received = r.is_received,
+                    doctag_id = r.doctag_id
+                };
+
+                myRqmList.Add(myRqm);
+            }
+            JavaScriptSerializer json = new JavaScriptSerializer();
+            var js = json.Serialize(myRqmList);
+            return js;
+
+
+        }
+
     }
 }
