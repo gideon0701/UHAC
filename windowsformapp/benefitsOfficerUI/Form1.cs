@@ -60,6 +60,8 @@ namespace benefitsOfficerUI
             // TODO: This line of code loads data into the 'myhealthDbDataSet.employees' table. You can move, or remove it, as needed.
             this.employeesTableAdapter.Fill(this.myhealthDbDataSet.employees);
             checkRows();
+
+            button1.PerformClick();
         }
 
 
@@ -201,6 +203,7 @@ namespace benefitsOfficerUI
 
         private void button3_Click(object sender, EventArgs e)
         {
+            assesstmentControl1.BringToFront();
             //change forecolor of button 3
             button3.ForeColor = System.Drawing.Color.FromArgb(246, 140, 30);
             button2.ForeColor = System.Drawing.Color.FromArgb(158, 158, 158);
@@ -262,7 +265,7 @@ namespace benefitsOfficerUI
                 try
                 {
 
-                    if (row.Cells[12].Value.ToString() == "1")
+                    if (row.Cells[10].Value.ToString() == "1")
                     {
                         row.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(200, 200, 200); ;
                         row.DefaultCellStyle.ForeColor = Color.Black;

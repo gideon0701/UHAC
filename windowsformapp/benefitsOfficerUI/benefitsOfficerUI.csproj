@@ -75,6 +75,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="assesstmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="assesstmentControl.Designer.cs">
+      <DependentUpon>assesstmentControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="buttonDesign.cs" />
     <Compile Include="dashboard.cs">
       <SubType>UserControl</SubType>
@@ -109,6 +115,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="windowProperties.cs" />
+    <EmbeddedResource Include="assesstmentControl.resx">
+      <DependentUpon>assesstmentControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
     </EmbeddedResource>

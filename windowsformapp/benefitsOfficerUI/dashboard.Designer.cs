@@ -55,11 +55,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pieChart1);
             this.Controls.Add(this.cartesianChart1);
             this.Name = "dashboard";
-            this.Size = new System.Drawing.Size(1052, 541);
+            this.Size = new System.Drawing.Size(999, 572);
             this.Load += new System.EventHandler(this.dashboard_Load);
             this.ResumeLayout(false);
 
