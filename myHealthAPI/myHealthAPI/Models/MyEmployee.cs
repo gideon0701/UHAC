@@ -17,6 +17,8 @@ namespace myHealthAPI.Models
         public string healthProvider { get; set; }
         public string hmoStatus { get; set; }
         public string hmoBenefits { get; set; }
+        public int? maximumAmount { get; set; }
+        public int? amountLeft { get; set; }
 
     }
 }

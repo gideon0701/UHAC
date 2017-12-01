@@ -12,13 +12,13 @@ namespace myHealthAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class requirement
+    public partial class EmployeeBenefit
     {
-        public int rqtId { get; set; }
-        public int employee_id { get; set; }
-        public string documentLabel { get; set; }
-        public Nullable<int> is_received { get; set; }
+        public int rowID { get; set; }
+        public int hmoID { get; set; }
+        public string benefitsName { get; set; }
+        public Nullable<int> amountCovered { get; set; }
     
-        public virtual employee employee { get; set; }
+        public virtual HMO HMO { get; set; }
     }
 }

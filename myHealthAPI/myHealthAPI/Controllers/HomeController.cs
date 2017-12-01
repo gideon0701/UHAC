@@ -98,8 +98,9 @@ namespace myHealthAPI.Controllers
                     password = emp.pwd,
                     healthProvider = emp.healthProvider,
                     hmoStatus = emp.HMO.status,
-                    hmoBenefits = emp.HMO.benefits
-
+                    hmoBenefits = emp.HMO.benefits,
+                    maximumAmount = emp.HMO.maximumAmount,
+                    amountLeft = emp.HMO.amountLeft
                 };
                 var js = json.Serialize(myemp);
                 return js;
@@ -108,16 +109,69 @@ namespace myHealthAPI.Controllers
         }
 
         [HttpGet]
+        public string getMyBenefits(int hmoID)
+        {
+            List<EmployeeBenefit> empBenList = db.EmployeeBenefits.Where(b => b.hmoID == hmoID).ToList();
+            List<myBenefits> myBenList = new List<myBenefits>();
+            foreach (var b in empBenList)
+            {
+                myBenefits myBen = new myBenefits {
+                    hmoID = b.hmoID,
+                    benefitsName = b.benefitsName,
+                    amountCovered = b.amountCovered
+                };
+
+                myBenList.Add(myBen);
+            }
+            JavaScriptSerializer json = new JavaScriptSerializer();
+            var js = json.Serialize(myBenList);
+            return js;
+
+        }
+
+        [HttpGet]
         public string getAllHospital(string provider)
         {
             List<AccreditedHospital> listHosp = new List<AccreditedHospital>();
-
+            List<Hosital> listHospital = new List<Hosital>();
             listHosp = db.AccreditedHospitals.Where(h => h.healthProvider == provider).ToList();
 
+            foreach (var h in listHosp)
+            {
+                Hosital hospital = new Hosital {
+                    hospital_id = h.hospital_id,
+                    healthProvider = h.healthProvider,
+                    hospital_name = h.hospital_name,
+                    hospital_address = h.hospital_address
+                };
+
+                listHospital.Add(hospital);
+            }
             JavaScriptSerializer json = new JavaScriptSerializer();
-            var js = json.Serialize(listHosp);
+            var js = json.Serialize(listHospital);
             return js;
 
+        }
+
+        [HttpGet]
+        public string getAllDoctors(int hospitalID)
+        {
+            List<accDoctor> accDocList = db.accDoctors.Where(d => d.hospitalID == hospitalID).ToList();
+            List<Doctors> docList = new List<Doctors>();
+
+            foreach (var d in accDocList)
+            {
+                Doctors doctor = new Doctors {
+                    doctorID = d.doctorID,
+                    hospitalID = d.hospitalID,
+                    doctorsName = d.doctorsName,
+                    specialization = d.specialization
+                };
+                docList.Add(doctor);
+            }
+            JavaScriptSerializer json = new JavaScriptSerializer();
+            var js = json.Serialize(docList);
+            return js;
         }
 
         [HttpGet]
@@ -134,7 +188,7 @@ namespace myHealthAPI.Controllers
                     employee_id = r.employee_id,
                     documentLabel = r.documentLabel,
                     is_received = r.is_received,
-                    doctag_id = r.doctag_id
+                    rowID = r.rqtId
                 };
 
                 myRqmList.Add(myRqm);
@@ -142,8 +196,6 @@ namespace myHealthAPI.Controllers
             JavaScriptSerializer json = new JavaScriptSerializer();
             var js = json.Serialize(myRqmList);
             return js;
-
-
         }
 
     }

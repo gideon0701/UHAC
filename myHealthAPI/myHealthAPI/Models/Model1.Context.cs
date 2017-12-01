@@ -25,13 +25,13 @@ namespace myHealthAPI.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<accDoctor> accDoctors { get; set; }
         public virtual DbSet<AccreditedHospital> AccreditedHospitals { get; set; }
+        public virtual DbSet<EmployeeBenefit> EmployeeBenefits { get; set; }
         public virtual DbSet<employee> employees { get; set; }
         public virtual DbSet<HMO> HMOes { get; set; }
         public virtual DbSet<processing> processings { get; set; }
-        public virtual DbSet<Record> Records { get; set; }
         public virtual DbSet<requirement> requirements { get; set; }
         public virtual DbSet<usergroup> usergroups { get; set; }
-        public virtual DbSet<reqAssessment> reqAssessments { get; set; }
     }
 }

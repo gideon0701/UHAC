@@ -18,8 +18,6 @@ namespace myHealthAPI.Models
         public employee()
         {
             this.processings = new HashSet<processing>();
-            this.Records = new HashSet<Record>();
-            this.reqAssessments = new HashSet<reqAssessment>();
             this.requirements = new HashSet<requirement>();
         }
     
@@ -33,19 +31,15 @@ namespace myHealthAPI.Models
         public int usergroup_id { get; set; }
         public Nullable<int> Contact { get; set; }
         public Nullable<int> IsMarried { get; set; }
-        public Nullable<int> Dependents { get; set; }
         public string healthProvider { get; set; }
         public Nullable<int> withPayable { get; set; }
         public Nullable<System.DateTime> Card_Expiration_Date { get; set; }
+        public Nullable<int> Number_of_dependents { get; set; }
     
         public virtual HMO HMO { get; set; }
         public virtual usergroup usergroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<processing> processings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Record> Records { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<reqAssessment> reqAssessments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<requirement> requirements { get; set; }
     }

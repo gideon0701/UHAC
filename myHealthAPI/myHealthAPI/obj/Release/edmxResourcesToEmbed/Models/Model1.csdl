@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="myhealthDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="accDoctor">
+    <Key>
+      <PropertyRef Name="doctorID" />
+    </Key>
+    <Property Name="doctorID" Type="Int32" Nullable="false" />
+    <Property Name="hospitalID" Type="Int32" Nullable="false" />
+    <Property Name="doctorsName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="specialization" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AccreditedHospital" Relationship="Self.FK__accDoctor__hospi__00200768" FromRole="accDoctors" ToRole="AccreditedHospitals" />
+  </EntityType>
   <EntityType Name="AccreditedHospital">
     <Key>
       <PropertyRef Name="hospital_id" />
@@ -8,6 +18,17 @@
     <Property Name="healthProvider" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="hospital_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="hospital_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="accDoctors" Relationship="Self.FK__accDoctor__hospi__00200768" FromRole="AccreditedHospitals" ToRole="accDoctors" />
+  </EntityType>
+  <EntityType Name="EmployeeBenefit">
+    <Key>
+      <PropertyRef Name="rowID" />
+    </Key>
+    <Property Name="rowID" Type="Int32" Nullable="false" />
+    <Property Name="hmoID" Type="Int32" Nullable="false" />
+    <Property Name="benefitsName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="amountCovered" Type="Int32" />
+    <NavigationProperty Name="HMO" Relationship="Self.FK__EmployeeB__amoun__07C12930" FromRole="EmployeeBenefits" ToRole="HMO" />
   </EntityType>
   <EntityType Name="employee">
     <Key>
@@ -23,16 +44,14 @@
     <Property Name="usergroup_id" Type="Int32" Nullable="false" />
     <Property Name="Contact" Type="Int32" />
     <Property Name="IsMarried" Type="Int32" />
-    <Property Name="Dependents" Type="Int32" />
     <Property Name="healthProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="withPayable" Type="Int32" />
     <Property Name="Card_Expiration_Date" Type="DateTime" Precision="0" />
+    <Property Name="Number_of_dependents" Type="Int32" />
     <NavigationProperty Name="HMO" Relationship="Self.FK__employees__HMO_i__4F7CD00D" FromRole="employees" ToRole="HMO" />
     <NavigationProperty Name="usergroup" Relationship="Self.FK__employees__userg__4E88ABD4" FromRole="employees" ToRole="usergroup" />
     <NavigationProperty Name="processings" Relationship="Self.FK__processin__emplo__5535A963" FromRole="employees" ToRole="processing" />
-    <NavigationProperty Name="Records" Relationship="Self.FK__Records__id__6C190EBB" FromRole="employees" ToRole="Records" />
-    <NavigationProperty Name="reqAssessments" Relationship="Self.FK__reqAssessmen__id__76969D2E" FromRole="employees" ToRole="reqAssessment" />
-    <NavigationProperty Name="requirements" Relationship="Self.FK__requireme__emplo__72C60C4A" FromRole="employees" ToRole="requirements" />
+    <NavigationProperty Name="requirements" Relationship="Self.FK__requireme__emplo__7D439ABD" FromRole="employees" ToRole="requirements" />
   </EntityType>
   <EntityType Name="HMO">
     <Key>
@@ -41,6 +60,9 @@
     <Property Name="id" Type="Int32" Nullable="false" />
     <Property Name="benefits" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="status" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="maximumAmount" Type="Int32" />
+    <Property Name="amountLeft" Type="Int32" />
+    <NavigationProperty Name="EmployeeBenefits" Relationship="Self.FK__EmployeeB__amoun__07C12930" FromRole="HMO" ToRole="EmployeeBenefits" />
     <NavigationProperty Name="employees" Relationship="Self.FK__employees__HMO_i__4F7CD00D" FromRole="HMO" ToRole="employees" />
   </EntityType>
   <EntityType Name="processing">
@@ -57,27 +79,15 @@
     <Property Name="duration" Type="Int32" />
     <NavigationProperty Name="employee" Relationship="Self.FK__processin__emplo__5535A963" FromRole="processing" ToRole="employees" />
   </EntityType>
-  <EntityType Name="Record">
-    <Key>
-      <PropertyRef Name="Availment_Claim" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="Availment_Claim" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Health_Card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Hospital" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Covered_Bill" Type="Int32" Nullable="false" />
-    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="employee" Relationship="Self.FK__Records__id__6C190EBB" FromRole="Records" ToRole="employees" />
-  </EntityType>
   <EntityType Name="requirement">
     <Key>
-      <PropertyRef Name="doctag_id" />
+      <PropertyRef Name="rqtId" />
     </Key>
+    <Property Name="rqtId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="employee_id" Type="Int32" Nullable="false" />
     <Property Name="documentLabel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="is_received" Type="Int32" />
-    <Property Name="doctag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="employee" Relationship="Self.FK__requireme__emplo__72C60C4A" FromRole="requirements" ToRole="employees" />
+    <NavigationProperty Name="employee" Relationship="Self.FK__requireme__emplo__7D439ABD" FromRole="requirements" ToRole="employees" />
   </EntityType>
   <EntityType Name="usergroup">
     <Key>
@@ -88,30 +98,30 @@
     <Property Name="keyword" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="employees" Relationship="Self.FK__employees__userg__4E88ABD4" FromRole="usergroup" ToRole="employees" />
   </EntityType>
-  <EntityType Name="reqAssessment">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="form" />
-      <PropertyRef Name="TIN" />
-      <PropertyRef Name="medical" />
-      <PropertyRef Name="NSO" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="form" Type="Int32" Nullable="false" />
-    <Property Name="TIN" Type="Int32" Nullable="false" />
-    <Property Name="medical" Type="Int32" Nullable="false" />
-    <Property Name="NSO" Type="Int32" Nullable="false" />
-    <Property Name="NSO_Mother" Type="Int32" />
-    <Property Name="NSO_Father" Type="Int32" />
-    <Property Name="Marriage_Contract" Type="Int32" />
-    <Property Name="dependents" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="NSO_child1" Type="Int32" />
-    <Property Name="NSO_child2" Type="Int32" />
-    <Property Name="NSO_child3" Type="Int32" />
-    <Property Name="marital_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="complete" Type="Int32" />
-    <NavigationProperty Name="employee" Relationship="Self.FK__reqAssessmen__id__76969D2E" FromRole="reqAssessment" ToRole="employees" />
-  </EntityType>
+  <Association Name="FK__accDoctor__hospi__00200768">
+    <End Role="AccreditedHospitals" Type="Self.AccreditedHospital" Multiplicity="1" />
+    <End Role="accDoctors" Type="Self.accDoctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccreditedHospitals">
+        <PropertyRef Name="hospital_id" />
+      </Principal>
+      <Dependent Role="accDoctors">
+        <PropertyRef Name="hospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EmployeeB__amoun__07C12930">
+    <End Role="HMO" Type="Self.HMO" Multiplicity="1" />
+    <End Role="EmployeeBenefits" Type="Self.EmployeeBenefit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HMO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EmployeeBenefits">
+        <PropertyRef Name="hmoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__employees__HMO_i__4F7CD00D">
     <End Role="HMO" Type="Self.HMO" Multiplicity="1" />
     <End Role="employees" Type="Self.employee" Multiplicity="*" />
@@ -148,31 +158,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Records__id__6C190EBB">
-    <End Role="employees" Type="Self.employee" Multiplicity="1" />
-    <End Role="Records" Type="Self.Record" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="employees">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Records">
-        <PropertyRef Name="id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__reqAssessmen__id__76969D2E">
-    <End Role="employees" Type="Self.employee" Multiplicity="1" />
-    <End Role="reqAssessment" Type="Self.reqAssessment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="employees">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="reqAssessment">
-        <PropertyRef Name="id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__requireme__emplo__72C60C4A">
+  <Association Name="FK__requireme__emplo__7D439ABD">
     <End Role="employees" Type="Self.employee" Multiplicity="1" />
     <End Role="requirements" Type="Self.requirement" Multiplicity="*" />
     <ReferentialConstraint>
@@ -185,14 +171,22 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="myhealthDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="accDoctors" EntityType="Self.accDoctor" />
     <EntitySet Name="AccreditedHospitals" EntityType="Self.AccreditedHospital" />
+    <EntitySet Name="EmployeeBenefits" EntityType="Self.EmployeeBenefit" />
     <EntitySet Name="employees" EntityType="Self.employee" />
     <EntitySet Name="HMOes" EntityType="Self.HMO" />
     <EntitySet Name="processings" EntityType="Self.processing" />
-    <EntitySet Name="Records" EntityType="Self.Record" />
     <EntitySet Name="requirements" EntityType="Self.requirement" />
     <EntitySet Name="usergroups" EntityType="Self.usergroup" />
-    <EntitySet Name="reqAssessments" EntityType="Self.reqAssessment" />
+    <AssociationSet Name="FK__accDoctor__hospi__00200768" Association="Self.FK__accDoctor__hospi__00200768">
+      <End Role="AccreditedHospitals" EntitySet="AccreditedHospitals" />
+      <End Role="accDoctors" EntitySet="accDoctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EmployeeB__amoun__07C12930" Association="Self.FK__EmployeeB__amoun__07C12930">
+      <End Role="HMO" EntitySet="HMOes" />
+      <End Role="EmployeeBenefits" EntitySet="EmployeeBenefits" />
+    </AssociationSet>
     <AssociationSet Name="FK__employees__HMO_i__4F7CD00D" Association="Self.FK__employees__HMO_i__4F7CD00D">
       <End Role="HMO" EntitySet="HMOes" />
       <End Role="employees" EntitySet="employees" />
@@ -205,15 +199,7 @@
       <End Role="employees" EntitySet="employees" />
       <End Role="processing" EntitySet="processings" />
     </AssociationSet>
-    <AssociationSet Name="FK__Records__id__6C190EBB" Association="Self.FK__Records__id__6C190EBB">
-      <End Role="employees" EntitySet="employees" />
-      <End Role="Records" EntitySet="Records" />
-    </AssociationSet>
-    <AssociationSet Name="FK__reqAssessmen__id__76969D2E" Association="Self.FK__reqAssessmen__id__76969D2E">
-      <End Role="employees" EntitySet="employees" />
-      <End Role="reqAssessment" EntitySet="reqAssessments" />
-    </AssociationSet>
-    <AssociationSet Name="FK__requireme__emplo__72C60C4A" Association="Self.FK__requireme__emplo__72C60C4A">
+    <AssociationSet Name="FK__requireme__emplo__7D439ABD" Association="Self.FK__requireme__emplo__7D439ABD">
       <End Role="employees" EntitySet="employees" />
       <End Role="requirements" EntitySet="requirements" />
     </AssociationSet>

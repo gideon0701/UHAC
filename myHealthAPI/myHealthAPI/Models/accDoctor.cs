@@ -12,13 +12,13 @@ namespace myHealthAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class requirement
+    public partial class accDoctor
     {
-        public int rqtId { get; set; }
-        public int employee_id { get; set; }
-        public string documentLabel { get; set; }
-        public Nullable<int> is_received { get; set; }
+        public int doctorID { get; set; }
+        public int hospitalID { get; set; }
+        public string doctorsName { get; set; }
+        public string specialization { get; set; }
     
-        public virtual employee employee { get; set; }
+        public virtual AccreditedHospital AccreditedHospital { get; set; }
     }
 }

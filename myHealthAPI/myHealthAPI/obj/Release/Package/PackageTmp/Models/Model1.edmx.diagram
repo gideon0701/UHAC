@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f3162280c13f4ea1a385c70dd2387d9d" Name="Diagram1">
-        <EntityTypeShape EntityType="myhealthDbModel.AccreditedHospital" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="myhealthDbModel.employee" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="myhealthDbModel.HMO" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="myhealthDbModel.processing" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="myhealthDbModel.Record" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="myhealthDbModel.requirement" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="myhealthDbModel.usergroup" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="myhealthDbModel.reqAssessment" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+      <Diagram DiagramId="f343854e0ba84ad294b86c475425d206" Name="Diagram1">
+        <EntityTypeShape EntityType="myhealthDbModel.accDoctor" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="myhealthDbModel.AccreditedHospital" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="myhealthDbModel.EmployeeBenefit" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="myhealthDbModel.employee" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="myhealthDbModel.HMO" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="myhealthDbModel.processing" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="myhealthDbModel.requirement" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="myhealthDbModel.usergroup" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="myhealthDbModel.FK__accDoctor__hospi__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="myhealthDbModel.FK__EmployeeB__amoun__07C12930" ManuallyRouted="false" />
         <AssociationConnector Association="myhealthDbModel.FK__employees__HMO_i__4F7CD00D" ManuallyRouted="false" />
         <AssociationConnector Association="myhealthDbModel.FK__employees__userg__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="myhealthDbModel.FK__processin__emplo__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="myhealthDbModel.FK__Records__id__6C190EBB" ManuallyRouted="false" />
-        <AssociationConnector Association="myhealthDbModel.FK__reqAssessmen__id__76969D2E" ManuallyRouted="false" />
-        <AssociationConnector Association="myhealthDbModel.FK__requireme__emplo__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="myhealthDbModel.FK__requireme__emplo__7D439ABD" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

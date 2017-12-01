@@ -7,9 +7,9 @@ namespace myHealthAPI.Models
 {
     public class myRequirements
     {
-        public int employee_id { get; set; }
+        public int? employee_id { get; set; }
         public string documentLabel { get; set; }
         public int? is_received { get; set; }
-        public int doctag_id { get; set; }
+        public int? rowID { get; set; }
     }
 }

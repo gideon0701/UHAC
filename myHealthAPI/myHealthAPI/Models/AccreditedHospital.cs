@@ -14,9 +14,18 @@ namespace myHealthAPI.Models
     
     public partial class AccreditedHospital
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AccreditedHospital()
+        {
+            this.accDoctors = new HashSet<accDoctor>();
+        }
+    
         public int hospital_id { get; set; }
         public string healthProvider { get; set; }
         public string hospital_name { get; set; }
         public string hospital_address { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<accDoctor> accDoctors { get; set; }
     }
 }
