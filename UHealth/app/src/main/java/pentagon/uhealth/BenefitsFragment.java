@@ -10,40 +10,43 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import pentagon.uhealth.Model.Benefits;
 import pentagon.uhealth.Model.Employee;
-import pentagon.uhealth.Model.Hospital;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class HospitalFragment extends Fragment {
+public class BenefitsFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    List<Benefits> benList;
     private Employee employee;
-    private List<Hospital> hospitalList;
 
     private String mParam1;
+    private String mParam2;
 
     RecyclerView recyclerView;
-    HospitalAdapter hospitalAdapter;
-    RecyclerView.LayoutManager layoutManager;
+    TextView Limit, amountLeft;
 
-    public HospitalFragment() {
+    BenefitsAdapter benefitsAdapter;
+    RecyclerView.LayoutManager layoutManager;
+    public BenefitsFragment() {
         // Required empty public constructor
     }
 
-    public static HospitalFragment newInstance(Employee param1) {
-        HospitalFragment fragment = new HospitalFragment();
+    public static BenefitsFragment newInstance(Employee param1) {
+        BenefitsFragment fragment = new BenefitsFragment();
         Bundle args = new Bundle();
         args.putSerializable("Employee", param1);
 
@@ -62,43 +65,46 @@ public class HospitalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hospital,container,false);
-
-        RestService rs = new RestService();
-        hospitalList = new ArrayList<>();
+        View view = inflater.inflate(R.layout.fragment_benefits,container,false);
         employee = (Employee) getArguments().getSerializable("Employee");
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.hospital_rv);
+        RestService rs = new RestService();
+        benList = new ArrayList<>();
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.ben_rv);
+        Limit = (TextView) view.findViewById(R.id.ben_Limit);
+        amountLeft = (TextView) view.findViewById(R.id.ben_AmntLeft);
+        Log.e("Curency", " " + employee.getMaximumAmount().toString());
+        Limit.setText(String.format("Php %s", convertNumber(employee.getMaximumAmount().toString())));
+        amountLeft.setText(String.format("Php %s", convertNumber(employee.getAmountLeft().toString())));
 
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        hospitalAdapter = new HospitalAdapter(hospitalList);
-        recyclerView.setAdapter(hospitalAdapter);
+        benefitsAdapter = new BenefitsAdapter(benList);
+        recyclerView.setAdapter(benefitsAdapter);
 
-        rs.getService().getAllHospital(employee.getHealthProvider(), new Callback<String>() {
+        rs.getService().getMyBenefits(Integer.parseInt(employee.getHMO_id()), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
                 try {
+                    Log.e("Benefits: ", s);
                     JSONArray jsnArr = new JSONArray(s);
-                    Log.e("JSON Array: ", "" + jsnArr.length());
                     for (int i = 0; i < jsnArr.length(); i++) {
                         JSONObject jsnObj = jsnArr.getJSONObject(i);
-                        Hospital hospital = new Hospital();
-                        hospital.setHospitalID(jsnObj.getInt("hospital_id"));
-                        hospital.setHospitalName(jsnObj.getString("hospital_name"));
-                        hospital.setHospitalAddress(jsnObj.getString("hospital_address"));
+                        Benefits benefits = new Benefits();
+                        benefits.setHmoID(jsnObj.getInt("hmoID"));
+                        benefits.setBenefitsName(jsnObj.getString("benefitsName"));
+                        benefits.setAmountCovered(jsnObj.getInt("amountCovered"));
 
-                        hospitalList.add(hospital);
+                        benList.add(benefits);
                     }
 
-                    hospitalAdapter.notifyDataSetChanged();
+                    benefitsAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.e("Error","JSONARRAY");
                 }
-
             }
 
             @Override
@@ -109,4 +115,10 @@ public class HospitalFragment extends Fragment {
         return view;
     }
 
+    private String convertNumber(String num) {
+        double amount = Double.parseDouble(num);
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+
+        return formatter.format(amount);
+    }
 }

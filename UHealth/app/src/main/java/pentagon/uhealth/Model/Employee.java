@@ -24,6 +24,8 @@ public class Employee implements Serializable{
     private String withPayable;
     private String cardStatus;
     private String cardBenefits;
+    private Integer maximumAmount;
+    private Integer amountLeft;
 
     public Employee(){
 
@@ -156,5 +158,21 @@ public class Employee implements Serializable{
 
     public void setCardBenefits(String cardBenefits) {
         this.cardBenefits = cardBenefits;
+    }
+
+    public Integer getMaximumAmount() {
+        return maximumAmount;
+    }
+
+    public void setMaximumAmount(Integer maximumAmount) {
+        this.maximumAmount = maximumAmount;
+    }
+
+    public Integer getAmountLeft() {
+        return amountLeft;
+    }
+
+    public void setAmountLeft(Integer amountLeft) {
+        this.amountLeft = amountLeft;
     }
 }

@@ -42,7 +42,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.MyView
 
     }
 
-    public  HospitalAdapter(List<Hospital> hospitalList) {
+    public HospitalAdapter(List<Hospital> hospitalList) {
         this.hospitalList = hospitalList;
     }
 

@@ -4,26 +4,17 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/myStatus"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/mystats_icon"
             android:title="My Status" />
         <item
             android:id="@+id/myBenefits"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/my_benefits_small_ico"
             android:title="My Benefits" />
         <item
             android:id="@+id/searchHospital"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/hosp_sm_ico"
             android:title="View Accredited Hospitals" />
 
-        <item
-            android:id="@+id/myAvailments"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="My Availments" />
-
-        <item
-            android:id="@+id/transactionHistory"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Transaction History" />
     </group>
 
 

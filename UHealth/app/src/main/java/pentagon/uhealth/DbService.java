@@ -28,4 +28,7 @@ public interface DbService {
 
     @GET("/Home/getAllDoctors")
     public void getAllDoctor(@Query("hospitalID") Integer hospitalID, Callback<String> callback);
+
+    @GET("/Home/getMyBenefits")
+    public void getMyBenefits(@Query("hmoID") Integer hmoID, Callback<String> callback);
 }

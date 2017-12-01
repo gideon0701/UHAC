@@ -9,19 +9,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/digital_banner">
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_height="55dp"
+            android:layout_marginTop="56dp"
+            app:srcCompat="@drawable/photo_id"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="36dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="57dp"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_alignStart="@+id/textView5" />
 
         <TextView
             android:id="@+id/myStats_name"
@@ -33,6 +32,8 @@
             android:layout_toEndOf="@+id/imageView3"
             android:layout_toRightOf="@+id/imageView3"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/background_light"
+            android:textColorHighlight="@android:color/background_light"
             android:textStyle="bold" />
 
         <TextView
@@ -44,7 +45,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/myStats_name"
             android:layout_below="@+id/myStats_name"
-            android:text="HMO ID:" />
+            android:text="HMO ID:"
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:id="@+id/myStats_empID"
@@ -55,7 +57,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/myStat_HMOid"
             android:layout_below="@+id/myStat_HMOid"
-            android:text="Your ID:" />
+            android:text="Your ID:"
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:id="@+id/myStats_provider"
@@ -64,7 +67,8 @@
             android:layout_alignLeft="@+id/imageView3"
             android:layout_alignStart="@+id/imageView3"
             android:layout_below="@+id/myStats_empID"
-            android:text="Health Provider:" />
+            android:text="Health Provider:"
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:id="@+id/myStats_status"
@@ -75,7 +79,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/myStats_provider"
             android:layout_below="@+id/myStats_provider"
-            android:text="Health Card Status: " />
+            android:text="Health Card Status: "
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:id="@+id/myStatus_coverage"
@@ -86,7 +91,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/myStats_status"
             android:layout_below="@+id/myStats_status"
-            android:text="Card Coverage: " />
+            android:text="Card Coverage: "
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:id="@+id/textView5"
@@ -95,9 +101,11 @@
             android:layout_below="@+id/myStatus_coverage"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp"
+            android:background="@color/colorPrimary"
             android:text="REQUIREMENTS CHECKLIST"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/background_light"
             android:textSize="20sp" />
 
         <android.support.v7.widget.RecyclerView

@@ -53,9 +53,9 @@ public class RequirementsAdapter extends RecyclerView.Adapter<RequirementsAdapte
         Requirements requirements = requiremntsList.get(position);
         holder.document_label.setText(requirements.getDocument_label());
         if (requirements.getIsRecieved() == 0) {
-            holder.status.setImageResource(android.R.drawable.checkbox_off_background);
+            holder.status.setImageResource(R.drawable.cross_icon);
         }else {
-            holder.status.setImageResource(android.R.drawable.checkbox_on_background);
+            holder.status.setImageResource(R.drawable.check_icon);
         }
 
     }

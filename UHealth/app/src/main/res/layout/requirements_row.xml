@@ -23,6 +23,7 @@
         android:layout_marginLeft="33dp"
         android:layout_marginStart="33dp"
         android:textAlignment="viewStart"
+        android:textColor="@android:color/background_dark"
         android:textSize="18sp" />
 
     <ImageView

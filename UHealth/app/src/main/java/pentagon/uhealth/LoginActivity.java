@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btn_login.setText("LOGGING IN");
+                btn_login.setBackgroundResource(R.drawable.loggin_icon);
                 btn_login.setEnabled(false);
 
                 RestService rs = new RestService();
@@ -57,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                                 emp.setHealthProvider(jsnObjc.getString("healthProvider"));
                                 emp.setCardStatus(jsnObjc.getString("hmoStatus"));
                                 emp.setCardBenefits(jsnObjc.getString("hmoBenefits"));
+                                emp.setMaximumAmount(jsnObjc.getInt("maximumAmount"));
+                                emp.setAmountLeft(jsnObjc.getInt("amountLeft"));
 
                                 Log.e("NAME", "" + emp.getName());
                                 Toast.makeText(LoginActivity.this, "Welcome " + emp.getName(), Toast.LENGTH_LONG).show();
@@ -71,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         }else {
-                            btn_login.setText("LOGIN");
+                            btn_login.setBackgroundResource(R.drawable.login_icon);
                             btn_login.setEnabled(true);
                             edit_password.setText("");
                             edit_password.setFocusable(true);
@@ -82,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void failure(RetrofitError error) {
                         Log.e("error", "" + error);
-                        btn_login.setText("LOGIN");
+                        btn_login.setBackgroundResource(R.drawable.login_icon);
                         btn_login.setEnabled(true);
                         Toast.makeText(LoginActivity.this,"There is a problem on your network", Toast.LENGTH_LONG).show();
                     }

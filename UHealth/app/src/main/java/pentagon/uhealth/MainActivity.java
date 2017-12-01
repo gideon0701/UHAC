@@ -1,10 +1,12 @@
 package pentagon.uhealth;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity
 
     myStatus myStatusFragment;
     HospitalFragment myHospitalFragment;
+    BenefitsFragment myBenefitFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity
 
         myStatusFragment = new myStatus().newInstance(employee);
         myHospitalFragment = new HospitalFragment().newInstance(employee);
+        myBenefitFragment = new BenefitsFragment().newInstance(employee);
+
 
         navigationView.getMenu().performIdentifierAction(R.id.myStatus,0);
     }
@@ -100,25 +105,48 @@ public class MainActivity extends AppCompatActivity
                     myStatusFragment.getTag()
             ).commit();
         } else if (id == R.id.myBenefits) {
+            if(employee.getCardStatus().equals("Active")) {
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(
+                        R.id.contentmain,
+                        myBenefitFragment,
+                        myBenefitFragment.getTag()
+                ).commit();
+            } else {
+                showDialog();
+            }
 
 
         } else if (id == R.id.searchHospital) {
+            if(employee.getCardStatus().equals("Active")) {
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(
+                        R.id.contentmain,
+                        myHospitalFragment,
+                        myHospitalFragment.getTag()
+                ).commit();
 
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(
-                    R.id.contentmain,
-                    myHospitalFragment,
-                    myHospitalFragment.getTag()
-            ).commit();
-
-        } else if (id == R.id.myAvailments) {
-
-        } else if (id == R.id.transactionHistory) {
+            } else {
+                showDialog();
+            }
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle("Warning");
+        builder.setMessage("Your Application is still pending, Please check your requirements");
+        builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
     }
 }
